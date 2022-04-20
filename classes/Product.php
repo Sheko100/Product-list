@@ -3,12 +3,13 @@
 namespace store\classes;
 
 abstract class Product {
+    
 protected $sku;
 protected $name;
 protected $price;
 protected $type;
 
-abstract public function addNewProduct();
+abstract public function getAttribute();
 
 public function setSku($sku){
     $this->sku = $sku;
@@ -27,6 +28,9 @@ public function setPrice($price){
 }
 public function getPrice(){
     return $this->price;
+}
+public function setType($type) {
+    $this->type = $type;
 }
 public function getType() {
     return $this->type;

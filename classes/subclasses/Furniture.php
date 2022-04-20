@@ -1,26 +1,24 @@
 <?php
 
 namespace store\classes\subclasses;
+
 class Furniture extends \store\classes\Product {
 
-    protected $height;
-    protected $width;
-    protected $length;
+    private $height;
+    private $width;
+    private $length;
     
     function __construct($sku, $name, $price, $type, $height, $width, $length) {
-      $this->sku=$sku;
-      $this->name=$name;
-      $this->price=$price;
-      $this->type=$type;
-      $this->height=$height;
-      $this->width=$width;
-      $this->length=$length;
+      $this->setSku($sku);
+      $this->setName($name);
+      $this->setPrice($price);
+      $this->setType($type);
+      $this->setDimensions($height, $width, $length);
   }
 
-    public function addNewProduct() {
-      $sql = "INSERT INTO furniture (height, width, length) VALUES ("
-      .$this->getHeight().", ".$this->getWidth().", ".$this->getLength().")";
-      return $sql;
+    public function getAttribute() {
+      $attr = "Dimensions: ".$this->getHeight()."x".$this->getWidth()."x".$this->getLength();
+      return $attr;
     }
 
     public function setDimensions($height, $width, $length) {

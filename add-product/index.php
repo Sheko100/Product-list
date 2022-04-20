@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<?php
-//require ("../script/db_connect.php");
 
-?>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -142,6 +139,7 @@ spl_autoload_register(function($subClass){
 
 });
 
+
 $product = new DVD($_GET["sku"], $_GET["name"], $_GET["price"], $_GET["product_type"], $_GET["size"]);
 
 require ("../classes/DatabaseManager.php");
@@ -150,9 +148,9 @@ require ("../classes/DatabaseManager.php");
 
 $db = new DatabaseManager();
 $db->connect();
-//$db->addNewRecord($product->getSku(), $product->getName(), $product->getPrice(), $product->getType(), $product->addNewProduct());
+//$db->addNewRecord($product->getSku(), $product->getName(), $product->getPrice(), $product->getType(), $product->getAttribute());
 //$db->deleteRecord();
-//$manager->addNew($product);
+
 
  
 

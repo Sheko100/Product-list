@@ -13,7 +13,7 @@ class ProductContainer extends React.Component {
                     sku={product[0].sku} 
                     name={product[0].name} 
                     price={product[0].price} 
-                    attribute={product[0].attribute} 
+                    attribute={product[0].specific_attribute} 
                 />
             );
     }
@@ -21,53 +21,37 @@ class ProductContainer extends React.Component {
 
 class Product extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+    this.state = {toDelete: false};
+    this.toDeleteProduct = this.toDeleteProduct.bind(this);
+  }
+// make sure that the alternating of boolien is correct
+  toDeleteProduct() {
+    this.setState(state => ({toDelete: !state.toDelete}));
+  }
 
-    componentDidMount() {
-
-    }
-
-    componentWillUnmount() {
-
-    }
-
-    toDelete() {
-        this.setState({deleted: true});
-    }
     
 
-    render() {
+  render() {
 
-        let container = "";
     return (
-    <li className='product'>
-        <DeleteCheckbox  />
+      <li className='product'>
+        <input type="checkbox" className="delete-checkbox" onChange={this.toDeleteProduct}/>
         <ProductInfo 
-        sku={this.props.sku} 
+        sku={this.props.sku}
         name={this.props.name} 
         price={this.props.price} 
         attribute={this.props.attribute} 
         />
-    </li>
+      </li>
     );
 
-    }
+  }
 }
 
-class DeleteCheckbox extends React.Component  {
-
-    constructor(props) {
-        super(props);
-        //this.state={checked: false};
-    }
-
-render() {
-    console.log(this.state);
+const DeleteCheckbox = () =>  {
 return <input type="checkbox" className="delete-checkbox" />;
-}
-
 }
 
 function ProductInfo(props) {
@@ -88,7 +72,7 @@ function Name(props) {
     return <div>{props.value}</div>;
 }
 function Price(props) {
-    return <div>{props.value}</div>;
+    return <div>{props.value}$</div>;
 }
 function Attribute(props) {
     return <div>{props.value}</div>;

@@ -29,6 +29,7 @@ class DatabaseManager {
 
     public function getAllRecords() {
         $sql = "SELECT * from products";
+
         
         $result = $this->connection->query($sql);
         $result = $result->fetch_all(MYSQLI_ASSOC);
@@ -37,13 +38,12 @@ class DatabaseManager {
         return json_encode($result);
     }
 
-    public function addNewRecord($sku, $name, $price, $type, $typeSql) {
-        $sql = "INSERT INTO products (sku, name, price, type) VALUES ('".
-        $sku."', '".$name."', ".$price.", '".$type."');";
+    public function addNewRecord($sku, $name, $price, $type, $attribute) {
+        $sql = "INSERT INTO products (sku, name, price, type, specific_attribute) VALUES ('".
+        $sku."', '".$name."', ".$price.", '".$type."', '".$attribute."');";
 
-        $sql .= $typeSql;
 
-        if($this->connection->multi_query($sql) === false) {
+        if($this->connection->query($sql) === false) {
             echo "server error: ".$this->connection->error;
         }
 
