@@ -118,7 +118,7 @@ return emptyFields;
 function isInvalid(field) {
 
 const nameField = field[1];
-const invalidChars = /^\s$|\s{2}|[0-9\\\/\(\)\$\[\]\{\}\%\<\>\|\"\'\-\+\=\*\`\!\?\#\@\&\:\;\,\.\^\~]/;
+const invalidChars = /^\s$|\s{2}|[\\\/\(\)\$\[\]\{\}\%\<\>\|\"\'\-\+\=\*\`\!\?\#\@\&\:\;\,\.\^\~]/;
 
 const invalidFields = [];
 const startNumberFieldIndex = 2;
