@@ -17,12 +17,6 @@ button {
 font-size: 1em;
 }
 
-
-
-/** maybe general rules **/
-
-
-
 #main_header, #main_content, #products_container, #product_form, #main_footer {
 box-sizing: border-box;
 }
@@ -87,16 +81,13 @@ opacity:1;
 }
 
 
-/* grid not supported on all browsers and grid template columns not general  */
 #main_content, #product_form {
   min-height: 75vh;
 }
 #products_container {
   min-height:100%;
 }
-/*#products_container, #product_form {
-min-height:75vh;
-}*/
+
 
 #products_container {
 margin:0;
@@ -146,9 +137,7 @@ justify-content: space-between;
 padding: 10px 0;
 max-width: 300px;
 }
-.field_label {
 
-}
 .form_field {
 padding: 5px 2px;
 border:solid 1px;
@@ -166,7 +155,6 @@ content:"Please, provide the data of indicated type";
 position:absolute;
 min-width:80%;
 top:50%;
-/*left:calc(100% + 7px);*/
 transform:translateY(-50%);
 left: calc(100% + 12px);
 font-size:13px;
@@ -174,7 +162,6 @@ padding:1px;
 text-align: center;
 border-radius: 5px;
 background-color:rgb(255,215,0);
-opacity:;
 }
 .notAvailableAlert:before {
   content:"This SKU is not available";
@@ -215,10 +202,6 @@ display: none;
   margin: 0 auto;
   }
   
-  #main_title {
-  
-  }
-  
   #products_container {
   grid-template-columns: repeat(4, 250px);
   row-gap: 10px;
@@ -236,10 +219,8 @@ display: none;
 
 #main_title {
 font-size: 6vw;
-/*font-size: 1.3em;*/
 }
 #controls_container {
-/*font-size: 0.2em;*/
 font-size: 3vw;
 }
 

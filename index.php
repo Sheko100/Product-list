@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="style/style.css">
 </head>
   <body>
-<!--<div id="reactRoot">-->
  <main id="main_container"> 
 
  <header id="main_header">
@@ -26,16 +25,12 @@
 
   <article id="main_content">
   
-  
-  
-  
   </article>
 
   <footer id="main_footer">
   <span>Scandiweb Test assignment</span>
   </footer>
   </main> 
-<!--</div>-->
   <script>
   <?php
     require_once ("src/Store/Database/DatabaseManager.php");
@@ -45,13 +40,11 @@
 
     
   ?>
-// change the name of the product array here and in component.js
 const product = <?php echo $product ?>;
 </script>
   <script src="script/script.js"></script>
   
   <!-- Load React. -->
-  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>

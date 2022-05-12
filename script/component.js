@@ -46,14 +46,9 @@ class ProductContainer extends React.Component {
       }
 
       this.productList = this.productList.map((prod, i) => {
-      
-        // change it to ternary operator
 
-       if(toDelete[i]) {
-        return null
-       } else {
-         return prod;
-       }
+        toDelete[i] ? null : prod;
+      
       });
 
       this.setState({productToDelete: toDelete});
@@ -132,7 +127,7 @@ function Name(props) {
     return <div>{props.value}</div>;
 }
 function Price(props) {
-    return <div>{props.value}$</div>;
+    return <div>{props.value} $</div>;
 }
 function Attribute(props) {
     return <div>{props.value}</div>;

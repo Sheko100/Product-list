@@ -1,3 +1,4 @@
+
 if(location.pathname == "/add-product/") {
     showFieldsOf("DVD");
 }
@@ -60,8 +61,6 @@ const missingValueAlert = document.getElementById("missingValueAlert");
 const emptyFields = isEmpty(field);
 const invalidFields = isInvalid(field);
 
-//window.alert(emptyFields);
-//window.alert(invalidFields);
 
 if(emptyFields.length > 0 || invalidFields.length > 0) {
 
@@ -74,7 +73,6 @@ e.target.style.boxShadow="0 0 2px 2px grey";
 
 const hideAlert = missingValueAlert.classList.contains("showAlert") ? 
 missingValueAlert.classList.remove("showAlert") : false;
-// reduce the number of the event listeners
 }
 
 missingValueAlert.classList.add("showAlert");
@@ -91,7 +89,6 @@ invalidFields[i].parentElement.classList.add("invalidValueAlert");
 invalidFields[i].oninput=function(e) {
 e.target.style.boxShadow="0 0 2px 2px grey";
 e.target.parentElement.classList.remove("invalidValueAlert");
-// reduce the number of the events
 }
 
 }

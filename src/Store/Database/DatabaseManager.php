@@ -3,10 +3,10 @@
 namespace Store\Database;
 class DatabaseManager {
 
-  protected $server_name;
-  protected $username;
-  protected $pass;
-  protected $db_name;
+  private $server_name;
+  private $username;
+  private $pass;
+  private $db_name;
   private $connection;
 
   function __construct() {

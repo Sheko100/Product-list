@@ -130,10 +130,6 @@
   <?php
 
 
-// TODO : 
-// TODO : 
-
-
 
 
 
@@ -158,9 +154,6 @@ if($_GET["state"] == "success") {
   $db->connect(); 
 
 
-//print_r($db->checkAvailabilityOf($_GET["sku"]));
-
-
   $typeClass = "\\Store\\Product\\Types\\".$_POST["product_type"];
 
   $newProduct = new $typeClass($_POST["sku"], $_POST["name"], $_POST["price"], $_POST["product_type"]);
@@ -170,9 +163,14 @@ if($_GET["state"] == "success") {
   $newProduct->setValueOf($attrName);
 
 
-  $db->addNewRecord($newProduct->getSku(), $newProduct->getName(), $newProduct->getPrice(), $newProduct->getType(), $newProduct->getAttributeValue());
+  $db->addNewRecord(
+    $newProduct->getSku(), 
+    $newProduct->getName(), 
+    $newProduct->getPrice(), 
+    $newProduct->getType(), 
+    $newProduct->getAttributeValue()
+  );
 
-  print_r($newProduct);
 
  echo "<script>location.assign('/')</script>";
 
@@ -185,25 +183,6 @@ if($_GET["state"] == "success") {
 
 
 
-
-
-
-//$db->addNewRecord($product->getSku(), $product->getName(), $product->getPrice(), $product->getType(), $product->getAttribute());
-//$db->deleteRecord();
-
-
- 
-
-
-
-
-   
-  //$newBook = new Book($_GET["sku"], $_GET["name"], $_GET["price"], $_GET["weight"]); 
-  //$newFurniture = new Furniture($_GET["sku"], $_GET["name"], $_GET["price"], $_GET["height"], $_GET["width"], $_GET["length"]);
-  
-  /*$newFurniture = new Furniture($_GET["sku"], $_GET["name"], $_GET["price"], $_GET["height"], $_GET["width"], $_GET["length"]);
-  
-print_r($newFurniture);*/
   
 
 
