@@ -23,11 +23,6 @@ font-size: 1em;
 
 
 
-
-#main_container {
-width:100%;
-}
-
 #main_header, #main_content, #products_container, #product_form, #main_footer {
 box-sizing: border-box;
 }
@@ -93,12 +88,16 @@ opacity:1;
 
 
 /* grid not supported on all browsers and grid template columns not general  */
-#main_content {
+#main_content, #product_form {
+  min-height: 75vh;
 }
-#products_container, #product_form {
+#products_container {
+  min-height:100%;
+}
+/*#products_container, #product_form {
 min-height:75vh;
-}
-/* grid-template-columns not a general size for all screens */
+}*/
+
 #products_container {
 margin:0;
 list-style:none;
@@ -109,7 +108,7 @@ column-gap: 10px;
 row-gap: 30px;
 padding: 20px 0;
 }
-/* height not a general size for all screens */
+
 .product {
 display: flex;
 justify-content: center;
@@ -159,10 +158,10 @@ box-shadow: 0 0 2px 2px grey;
 transition: box-shadow 0.4s ease;
 }
 
-.invalidValueAlert {
+.invalidValueAlert, .notAvailableAlert {
 position: relative;
 }
-.invalidValueAlert:before {
+.invalidValueAlert:before, .notAvailableAlert:before {
 content:"Please, provide the data of indicated type";
 position:absolute;
 min-width:80%;
@@ -177,7 +176,10 @@ border-radius: 5px;
 background-color:rgb(255,215,0);
 opacity:;
 }
-.invalidValueAlert:after {
+.notAvailableAlert:before {
+  content:"This SKU is not available";
+}
+.invalidValueAlert:after, .notAvailableAlert:after {
 content:"";
 position:absolute;
 top:50%;
@@ -202,6 +204,31 @@ display: none;
 
 
 /* *** Start Breakpoint Rules *** */
+
+/* *** Breakpoint for biggest screens *** */
+@media only screen and (min-width: 1250px) {
+
+  /* *** main rules *** */
+  
+  #main_container {
+  width: 1250px; 
+  margin: 0 auto;
+  }
+  
+  #main_title {
+  
+  }
+  
+  #products_container {
+  grid-template-columns: repeat(4, 250px);
+  row-gap: 10px;
+  }
+  .product {
+  height: 250px;
+  }
+  
+  
+  }
 
 
 /* *** Breakpoint for the smallest screens *** */
@@ -245,7 +272,7 @@ border-left-color:transparent;
 
 }
 
-/* breakpoint for the smallest smallest devices */
+/* *** breakpoint for the smallest smallest devices *** */
 @media only screen and (max-width:270px) {
 
 #missingValueAlert{ 
@@ -275,30 +302,7 @@ font-size: 4vw;
 
 
 
-/* *** Breakpoint for biggest screens *** */
-@media only screen and (min-width: 1250px) {
 
-/* *** main rules *** */
-
-#main_container {
-width: 1250px; 
-margin: 0 auto;
-}
-
-#main_title {
-
-}
-
-#products_container {
-grid-template-columns: repeat(4, 250px);
-row-gap: 10px;
-}
-.product {
-height: 250px;
-}
-
-
-}
 
 
 /* *** End Breakpoint Rules *** */

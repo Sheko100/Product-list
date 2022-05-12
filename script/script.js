@@ -33,6 +33,27 @@ typeToShow.style.display="block";
 }
 
 
+function checkAvailabilityOf(sku) {
+const skuValue = sku.value;
+
+
+fetch(`../src/Store/Database/skuAvailability.php?sku=${skuValue}`)
+.then(response => response.json())
+.then(isAvailable => {
+  if(!isAvailable) {
+    sku.style.boxShadow="0 0 2px 2px rgb(255,215,0)";
+    sku.parentElement.classList.add("notAvailableAlert");
+    sku.oninput = function(e) {
+      e.target.style.boxShadow="0 0 2px 2px grey";
+      e.target.parentElement.classList.remove("notAvailableAlert");
+    }
+  }
+});
+
+
+}
+
+
 function validateData() {
 const field = document.getElementsByClassName("visible_field");
 const missingValueAlert = document.getElementById("missingValueAlert");
@@ -126,24 +147,18 @@ return invalidFields;
 
 }
 
+(function makeClickingFeeling() {
+  const eventName = ["mousedown", "mouseup", "mouseout"];
+  const shadow = ["2px 2px 2px inset", "2px 2px 3px", "2px 2px 3px"];
 
-function toDeleteProduct(checkbox){
-checkbox.classList.toggle("checked");
-}
+  for(let i=0;i<eventName.length;i++) {
+  document.getElementById("controls_container").addEventListener(eventName[i], function(e) {
 
-
-
-function deleteProduct() {
-    const checkedbox = document.getElementsByClassName("checked");
-
-    for (let i = 0; i < checkedbox.length; i++) {
-            checkedbox[i].parentElement.style.display="none";
+    if(e.target.classList.contains("controls_button")) {
+      e.target.style.boxShadow = shadow[i];
     }
 
-}
+  });
+  }
+})();
 
-function addProduct() {
-    const productContainer = document.getElementById("product_container");
-}
-
-//window.alert(productManager);

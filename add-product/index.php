@@ -23,12 +23,12 @@
   </header>
   <article id="main_content">
   
-  <form  action="" target="_self" method="get"  id="product_form" onsubmit="return  validateData()">
+  <form  action="?state=success" target="_self" method="post"  id="product_form" onsubmit="return  validateData()">
   
   <div class="field_container">
   <label class="field_label" for="sku">SKU:</label>
   <span>
-    <input type="text" id="sku" class="form_field visible_field" name="sku"  placeholder="E.G. TR120555">
+    <input type="text" id="sku" class="form_field visible_field" name="sku" onchange="checkAvailabilityOf(this)"  placeholder="E.G. TR120555">
   </span>
   </div>
   <div class="field_container">
@@ -122,32 +122,72 @@
   
   
   <script src="../script/script.js"></script>
+
+
+
     </body>
   </html>
   <?php
 
 
+// TODO : 
+// TODO : 
 
 
-require ("../classes/Product.php");
 
 
-// call php autoload method
-spl_autoload_register(function($subClass){
 
-  require ("../classes/subclasses/" . $subClass . ".php");
+
+spl_autoload_register(function($class){
+
+  $classPath = __DIR__ . "/../src/" . str_replace("\\", "/", $class) . ".php";
+  
+  if(file_exists($classPath)) {
+  require_once $classPath;
+  }
+
 
 });
 
 
-$product = new DVD($_GET["sku"], $_GET["name"], $_GET["price"], $_GET["product_type"], $_GET["size"]);
 
-require ("../classes/DatabaseManager.php");
-
+if($_GET["state"] == "success") {
 
 
-$db = new DatabaseManager();
-$db->connect();
+  $db = new \Store\Database\DatabaseManager();
+  $db->connect(); 
+
+
+//print_r($db->checkAvailabilityOf($_GET["sku"]));
+
+
+  $typeClass = "\\Store\\Product\\Types\\".$_POST["product_type"];
+
+  $newProduct = new $typeClass($_POST["sku"], $_POST["name"], $_POST["price"], $_POST["product_type"]);
+
+  $attrName = $newProduct->getAttributeName();
+
+  $newProduct->setValueOf($attrName);
+
+
+  $db->addNewRecord($newProduct->getSku(), $newProduct->getName(), $newProduct->getPrice(), $newProduct->getType(), $newProduct->getAttributeValue());
+
+  print_r($newProduct);
+
+ echo "<script>location.assign('/')</script>";
+
+}
+
+
+
+
+
+
+
+
+
+
+
 //$db->addNewRecord($product->getSku(), $product->getName(), $product->getPrice(), $product->getType(), $product->getAttribute());
 //$db->deleteRecord();
 
