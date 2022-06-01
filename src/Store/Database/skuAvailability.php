@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $sku = $_GET["sku"];
 
@@ -8,4 +8,3 @@ $db->connect();
 $isAvailable = $db->checkAvailabilityOf($sku);
 
 echo json_encode($isAvailable);
-?>
